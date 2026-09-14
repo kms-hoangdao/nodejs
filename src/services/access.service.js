@@ -1,6 +1,6 @@
  
 const shopModel = require('../models/shop.model')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 const keyTokenService = require('./keyToken.service')
 const { createTokenPair } = require('../auth/authUtils')
@@ -80,3 +80,5 @@ class AccessService {
     }
   }
 }
+
+module.exports = AccessService

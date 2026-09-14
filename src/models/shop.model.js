@@ -1,7 +1,7 @@
 'use strict';
 
 
-const { model, Schema, Types } = require('mongoose'); // Erase if already required
+const { model, Schema } = require('mongoose'); // Erase if already required
 
 const DOCUMENT_NAME = 'Shop';
 const COLLECTION_NAME = 'shops';
@@ -29,7 +29,7 @@ const shopSchema = new Schema({
     enum: ['active', 'inactive']
   }, 
   verified: {
-    type: Schema.Types.Boolean,
+    type: Boolean,
     default: false
   },
   roles: {
@@ -42,4 +42,4 @@ const shopSchema = new Schema({
 });
 
 //Export the model
-module.exports = mongoose.model(DOCUMENT_NAME, shopSchema);
+module.exports = model(DOCUMENT_NAME, shopSchema);
