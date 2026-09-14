@@ -1,16 +1,18 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const { config } = require('../configs/config.mongodb');
 
-const dbURI = 'mongodb://localhost:27017/nodejs';
 
+
+const MONGODB_URI = process.env.MONGODB_URI;
 class Database {
   constructor() {
     this.connect();
   }
 
   connect(type = 'mongodb') { 
-    mongoose.connect(dbURI)
+    mongoose.connect(MONGODB_URI)
       .then(() => {
         console.log(`Connected to ${type} database`);
       })
