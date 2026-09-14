@@ -1,20 +1,20 @@
-const keyTokenModel = require('../models/keyToken.model');
+'use strict'
+
+const keyTokenModel = require('../models/keytoken.model')
 
 class KeyTokenService {
   static createKeyToken = async ({ userId, publicKey }) => {
-    try {
-      const publicKeyString = publicKey.toString();
-      const keyToken = await keyTokenModel.create({
-        user: userId,
-        publicKey: publicKeyString,
-      });
+    // publicKey đã là chuỗi PEM (do generateKeyPair khai báo publicKeyEncoding),
+    // toString() ở đây chỉ để phòng trường hợp nhận vào Buffer/KeyObject.
+    const publicKeyString = publicKey.toString()
 
-      return keyToken ? keyToken.publicKey : null;
-      
-    } catch (error) {
-      return error;
-    }
-  };
+    const keyToken = await keyTokenModel.create({
+      user: userId,
+      publicKey: publicKeyString
+    })
+
+    return keyToken ? keyToken.publicKey : null
+  }
 }
 
-module.exports = KeyTokenService;
+module.exports = KeyTokenService
